@@ -16,7 +16,11 @@ class Eventually extends \PHPUnit_Framework_Constraint
 
     public function __construct($timeoutMilliseconds = 5000, $waitMilliseconds = 500)
     {
-        parent::__construct();
+        // for compatibility with PHPUnit 4
+        $parentConstructor = array('parent', '__construct');
+        if (is_callable($parentConstructor)) {
+            call_user_func($parentConstructor);
+        }
 
         $this->timeoutMilliseconds = $timeoutMilliseconds;
         $this->waitMilliseconds = $waitMilliseconds;
