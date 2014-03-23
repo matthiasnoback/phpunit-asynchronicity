@@ -1,5 +1,17 @@
 {
     "name": "matthiasnoback/phpunit-asynchronicity",
+    "description": "Library for asserting things that happen asynchronously with PHPUnit",
+    "license": "MIT",
+    "type": "library",
+    "keywords": ["PHPUnit", "asynchronicity", "assertion"],
+    "homepage": "http://github.com/matthiasnoback/phpunit-asynchronicity",
+    "authors": [
+        {
+            "name": "Matthias Noback",
+            "email": "matthiasnoback@gmail.com",
+            "homepage": "http://php-and-symfony.matthiasnoback.nl"
+        }
+    ],
     "autoload": {
         "psr-0": {
             "Matthias\\PhpUnitAsynchronicity\\": "src/",
