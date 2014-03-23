@@ -1,0 +1,15 @@
+{
+    "name": "matthiasnoback/phpunit-asynchronicity",
+    "autoload": {
+        "psr-0": {
+            "Matthias\\PhpUnitAsynchronicity\\": "src/",
+            "Matthias\\Polling\\": "src/",
+            "Matthias\\PhpUnitAsynchronicity\\Tests": "tests/",
+            "Matthias\\Polling\\Tests": "tests/"
+        }
+    },
+    "require": {
+        "phpunit/phpunit": ">=3.7",
+        "beberlei/assert": ">=1.0"
+    }
+}
