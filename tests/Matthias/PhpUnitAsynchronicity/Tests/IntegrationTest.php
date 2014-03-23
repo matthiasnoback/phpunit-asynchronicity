@@ -11,6 +11,10 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
      */
     public function it_waits_until_a_child_process_does_something()
     {
+        if (!extension_loaded('pcntl')) {
+            $this->markTestSkipped('Requires PCNTL extension');
+        }
+
         $timeoutMilliseconds = 2000;
         $waitMilliseconds = 1000;
 
@@ -30,7 +34,6 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
             pcntl_wait($status);
         } else {
             // we are the child process
-            sleep(1);
             touch($file);
             exit;
         }

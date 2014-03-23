@@ -53,7 +53,7 @@ class EventuallyTest extends \PHPUnit_Framework_TestCase
             $this->assertFalse($this->constraint->evaluate($this->probe));
             $this->fail('Expected the constraint to fail');
         } catch (\PHPUnit_Framework_ExpectationFailedException $exception) {
-            $this->assertContains('A timeout has occurred', $exception->getMessage());
+            $this->assertContains('timeout', $exception->getMessage());
         }
     }
 
@@ -85,6 +85,16 @@ class EventuallyTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('\InvalidArgumentException', 'ProbeInterface');
 
         $constraint->evaluate(new \stdClass());
+    }
+
+    /**
+     * @test
+     */
+    public function it_accepts_a_closure_as_probe()
+    {
+        $constraint = new Eventually();
+
+        $this->assertTrue($constraint->evaluate(function () { return true; }));
     }
 
     private function probeAlwaysFails()

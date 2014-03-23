@@ -2,6 +2,7 @@
 
 namespace Matthias\PhpUnitAsynchronicity;
 
+use Matthias\Polling\CallableProbe;
 use Matthias\Polling\Exception\Interrupted;
 use Matthias\Polling\Poller;
 use Matthias\Polling\ProbeInterface;
@@ -23,6 +24,10 @@ class Eventually extends \PHPUnit_Framework_Constraint
 
     public function evaluate($probe, $description = '', $returnResult = false)
     {
+        if (is_callable($probe)) {
+            $probe = new CallableProbe($probe);
+        }
+
         if (!($probe instanceof ProbeInterface)) {
             throw new \InvalidArgumentException('Expected an instance of ProbeInterface');
         }

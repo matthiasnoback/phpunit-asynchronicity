@@ -6,7 +6,6 @@ use Matthias\Polling\ProbeInterface;
 
 class FileHasBeenCreated implements ProbeInterface
 {
-    private $fileHasBeenCreated;
     private $path;
 
     public function __construct($path)
@@ -14,17 +13,8 @@ class FileHasBeenCreated implements ProbeInterface
         $this->path = $path;
     }
 
-    public function sample()
-    {
-        $this->fileHasBeenCreated = is_file($this->path);
-    }
-
     public function isSatisfied()
     {
-        if ($this->fileHasBeenCreated === null) {
-            return false;
-        }
-
-        return $this->fileHasBeenCreated;
+        return is_file($this->path);
     }
 }

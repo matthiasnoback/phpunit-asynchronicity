@@ -16,8 +16,6 @@ class Poller
             }
 
             $timeout->wait();
-
-            $probe->sample();
         }
     }
 }

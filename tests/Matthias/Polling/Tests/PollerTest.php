@@ -39,8 +39,6 @@ class PollerTest extends \PHPUnit_Framework_TestCase
 
         $this->pollerWaits();
 
-        $this->probeIsAskedToTakeASample();
-
         $this->timeoutOccursAtSecondRun();
 
         $this->pollerIsInterrupted();
@@ -59,8 +57,6 @@ class PollerTest extends \PHPUnit_Framework_TestCase
 
         $this->pollerWaits();
 
-        $this->probeIsAskedToTakeASample();
-
         $this->timeoutNeverOccurs();
 
         $this->poller->poll($this->probe, $this->timeout);
@@ -72,13 +68,6 @@ class PollerTest extends \PHPUnit_Framework_TestCase
             ->expects($this->atLeastOnce())
             ->method('isSatisfied')
             ->will($this->returnValue(false));
-    }
-
-    private function probeIsAskedToTakeASample()
-    {
-        $this->probe
-            ->expects($this->atLeastOnce())
-            ->method('sample');
     }
 
     private function timeoutOccursAtSecondRun()
