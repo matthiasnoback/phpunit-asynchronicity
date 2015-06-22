@@ -90,6 +90,25 @@ class EventuallyTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function when_rendering_the_error_message_it_does_not_try_to_export_the_probe_itself_and_crash()
+    {
+        $constraint = new Eventually(10, 10);
+
+        $this->setExpectedException(
+            '\PHPUnit_Framework_ExpectationFailedException',
+            "A timeout has occurred\nFailed asserting that the given probe was satisfied within the provided timeout."
+        );
+
+        self::assertThat(function() {
+            // never pass
+            return false;
+        }, $constraint);
+    }
+
+
+    /**
+     * @test
+     */
     public function it_accepts_a_closure_as_probe()
     {
         $constraint = new Eventually();

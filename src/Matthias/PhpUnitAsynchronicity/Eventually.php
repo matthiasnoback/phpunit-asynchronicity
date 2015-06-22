@@ -53,8 +53,13 @@ class Eventually extends \PHPUnit_Framework_Constraint
         return true;
     }
 
+    protected function failureDescription($other)
+    {
+        return 'the given probe was satisfied within the provided timeout';
+    }
+
     public function toString()
     {
-        return 'was satisfied within the provided timeout';
+        throw new \BadMethodCallException();
     }
 }
