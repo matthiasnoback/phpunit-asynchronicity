@@ -3,8 +3,9 @@
 namespace Matthias\PhpUnitAsynchronicity\Tests;
 
 use Matthias\PhpUnitAsynchronicity\Eventually;
+use PHPUnit\Framework\TestCase;
 
-class IntegrationTest extends \PHPUnit_Framework_TestCase
+class IntegrationTest extends TestCase
 {
     /**
      * @test

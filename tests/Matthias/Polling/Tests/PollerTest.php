@@ -3,8 +3,9 @@
 namespace Matthias\Polling\Tests;
 
 use Matthias\Polling\Poller;
+use PHPUnit\Framework\TestCase;
 
-class PollerTest extends \PHPUnit_Framework_TestCase
+class PollerTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
@@ -23,8 +24,8 @@ class PollerTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->probe = $this->getMock('Matthias\Polling\ProbeInterface');
-        $this->timeout = $this->getMock('Matthias\Polling\TimeoutInterface');
+        $this->probe = $this->createMock('Matthias\Polling\ProbeInterface');
+        $this->timeout = $this->createMock('Matthias\Polling\TimeoutInterface');
         $this->poller = new Poller();
     }
 
@@ -90,7 +91,7 @@ class PollerTest extends \PHPUnit_Framework_TestCase
 
     private function pollerIsInterrupted()
     {
-        $this->setExpectedException('Matthias\Polling\Exception\Interrupted');
+        $this->expectException('Matthias\Polling\Exception\Interrupted');
     }
 
     private function pollerStartsTimeoutMechanism()
