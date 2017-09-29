@@ -3,8 +3,10 @@
 namespace Matthias\PhpUnitAsynchronicity\Tests;
 
 use Matthias\PhpUnitAsynchronicity\Eventually;
+use PHPUnit\Framework\ExpectationFailedException;
+use PHPUnit\Framework\TestCase;
 
-class EventuallyTest extends \PHPUnit_Framework_TestCase
+class EventuallyTest extends TestCase
 {
     /**
      * @var Eventually
@@ -19,7 +21,7 @@ class EventuallyTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->constraint = new Eventually(100, 50);
-        $this->probe = $this->getMock('Matthias\Polling\ProbeInterface');
+        $this->probe = $this->createMock('Matthias\Polling\ProbeInterface');
     }
 
     /**
@@ -52,7 +54,7 @@ class EventuallyTest extends \PHPUnit_Framework_TestCase
         try {
             $this->assertFalse($this->constraint->evaluate($this->probe));
             $this->fail('Expected the constraint to fail');
-        } catch (\PHPUnit_Framework_ExpectationFailedException $exception) {
+        } catch (ExpectationFailedException $exception) {
             $this->assertContains('timeout', $exception->getMessage());
         }
     }
@@ -69,7 +71,7 @@ class EventuallyTest extends \PHPUnit_Framework_TestCase
         try {
             $this->assertFalse($this->constraint->evaluate($this->probe, $specificMessage));
             $this->fail('Expected the constraint to fail');
-        } catch (\PHPUnit_Framework_ExpectationFailedException $exception) {
+        } catch (ExpectationFailedException $exception) {
             $this->assertContains($specificMessage, $exception->getMessage());
             $this->assertContains('A timeout has occurred', $exception->getMessage());
         }
@@ -82,7 +84,7 @@ class EventuallyTest extends \PHPUnit_Framework_TestCase
     {
         $constraint = new Eventually();
 
-        $this->setExpectedException('\InvalidArgumentException', 'ProbeInterface');
+        $this->expectException('\InvalidArgumentException', 'ProbeInterface');
 
         $constraint->evaluate(new \stdClass());
     }
@@ -94,8 +96,8 @@ class EventuallyTest extends \PHPUnit_Framework_TestCase
     {
         $constraint = new Eventually(10, 10);
 
-        $this->setExpectedException(
-            '\PHPUnit_Framework_ExpectationFailedException',
+        $this->expectException(
+            '\PHPUnit\Framework\ExpectationFailedException',
             "A timeout has occurred\nFailed asserting that the given probe was satisfied within the provided timeout."
         );
 

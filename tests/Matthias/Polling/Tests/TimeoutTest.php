@@ -3,8 +3,9 @@
 namespace Matthias\Polling\Tests;
 
 use Matthias\Polling\Timeout;
+use PHPUnit\Framework\TestCase;
 
-class TimeoutTest extends \PHPUnit_Framework_TestCase
+class TimeoutTest extends TestCase
 {
     /**
      * @var Timeout
@@ -22,7 +23,7 @@ class TimeoutTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->clock = $this->getMock('Matthias\Polling\ClockInterface');
+        $this->clock = $this->createMock('Matthias\Polling\ClockInterface');
         $this->waitMilliseconds = 10;
         $this->timeoutMilliseconds = 50;
         $this->timeout = new Timeout($this->clock, $this->waitMilliseconds, $this->timeoutMilliseconds);
@@ -72,7 +73,7 @@ class TimeoutTest extends \PHPUnit_Framework_TestCase
      */
     public function it_fails_when_start_is_not_called_first()
     {
-        $this->setExpectedException('\LogicException', 'start()');
+        $this->expectException('\LogicException', 'start()');
 
         $this->timeout->hasTimedOut();
     }

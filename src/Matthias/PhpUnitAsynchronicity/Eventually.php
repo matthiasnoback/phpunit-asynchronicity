@@ -8,8 +8,9 @@ use Matthias\Polling\Poller;
 use Matthias\Polling\ProbeInterface;
 use Matthias\Polling\SystemClock;
 use Matthias\Polling\Timeout;
+use PHPUnit\Framework\Constraint\Constraint;
 
-class Eventually extends \PHPUnit_Framework_Constraint
+class Eventually extends Constraint
 {
     private $timeoutMilliseconds;
     private $waitMilliseconds;
