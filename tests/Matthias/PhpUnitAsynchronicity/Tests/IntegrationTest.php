@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Matthias\PhpUnitAsynchronicity\Tests;
 
@@ -10,7 +11,7 @@ class IntegrationTest extends TestCase
     /**
      * @test
      */
-    public function it_waits_until_a_child_process_does_something()
+    public function it_waits_until_a_child_process_does_something(): void
     {
         if (!extension_loaded('pcntl')) {
             $this->markTestSkipped('Requires PCNTL extension');

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Matthias\Polling;
 
@@ -14,7 +15,7 @@ class CallableProbe implements ProbeInterface
         $this->callable = $callable;
     }
 
-    public function isSatisfied()
+    public function isSatisfied(): bool
     {
         $isSatisfied = call_user_func($this->callable);
 

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Matthias\Polling\Tests;
 
@@ -32,7 +33,7 @@ class PollerTest extends TestCase
     /**
      * @test
      */
-    public function it_asks_the_probe_if_it_is_satisfied_with_a_sample_until_a_timeout_occurs()
+    public function it_asks_the_probe_if_it_is_satisfied_with_a_sample_until_a_timeout_occurs(): void
     {
         $this->pollerStartsTimeoutMechanism();
 
@@ -50,7 +51,7 @@ class PollerTest extends TestCase
     /**
      * @test
      */
-    public function it_is_not_interruped_if_no_timeout_occurs_and_the_probe_was_satisfied()
+    public function it_is_not_interruped_if_no_timeout_occurs_and_the_probe_was_satisfied(): void
     {
         $this->pollerStartsTimeoutMechanism();
 
@@ -63,7 +64,7 @@ class PollerTest extends TestCase
         $this->poller->poll($this->probe, $this->timeout);
     }
 
-    private function probeIsNeverSatisfied()
+    private function probeIsNeverSatisfied(): void
     {
         $this->probe
             ->expects($this->atLeastOnce())
@@ -71,7 +72,7 @@ class PollerTest extends TestCase
             ->will($this->returnValue(false));
     }
 
-    private function timeoutOccursAtSecondRun()
+    private function timeoutOccursAtSecondRun(): void
     {
         $hasTimedOut = array(false, true);
 
@@ -89,26 +90,26 @@ class PollerTest extends TestCase
             );
     }
 
-    private function pollerIsInterrupted()
+    private function pollerIsInterrupted(): void
     {
         $this->expectException('Matthias\Polling\Exception\Interrupted');
     }
 
-    private function pollerStartsTimeoutMechanism()
+    private function pollerStartsTimeoutMechanism(): void
     {
         $this->timeout
             ->expects($this->once())
             ->method('start');
     }
 
-    private function pollerWaits()
+    private function pollerWaits(): void
     {
         $this->timeout
             ->expects($this->once())
             ->method('wait');
     }
 
-    private function timeoutNeverOccurs()
+    private function timeoutNeverOccurs(): void
     {
         $this->timeout
             ->expects($this->any())
@@ -116,7 +117,7 @@ class PollerTest extends TestCase
             ->will($this->returnValue(false));
     }
 
-    private function probeIsSatisfiedAtSecondRun()
+    private function probeIsSatisfiedAtSecondRun(): void
     {
         $isSatisfied = array(false, true);
 

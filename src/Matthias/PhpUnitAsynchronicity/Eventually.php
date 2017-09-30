@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Matthias\PhpUnitAsynchronicity;
 
@@ -15,13 +16,9 @@ class Eventually extends Constraint
     private $timeoutMilliseconds;
     private $waitMilliseconds;
 
-    public function __construct($timeoutMilliseconds = 5000, $waitMilliseconds = 500)
+    public function __construct(int $timeoutMilliseconds = 5000, int $waitMilliseconds = 500)
     {
-        // for compatibility with PHPUnit 4
-        $parentConstructor = array('parent', '__construct');
-        if (is_callable($parentConstructor)) {
-            call_user_func($parentConstructor);
-        }
+        parent::__construct();
 
         $this->timeoutMilliseconds = $timeoutMilliseconds;
         $this->waitMilliseconds = $waitMilliseconds;
@@ -54,7 +51,7 @@ class Eventually extends Constraint
         return true;
     }
 
-    protected function failureDescription($other)
+    protected function failureDescription($other): string
     {
         return 'the given probe was satisfied within the provided timeout';
     }

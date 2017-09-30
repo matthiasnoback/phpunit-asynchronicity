@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Matthias\PhpUnitAsynchronicity\Tests;
 
@@ -13,7 +14,7 @@ class FileHasBeenCreated implements ProbeInterface
         $this->path = $path;
     }
 
-    public function isSatisfied()
+    public function isSatisfied(): bool
     {
         return is_file($this->path);
     }

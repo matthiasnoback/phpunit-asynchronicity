@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Matthias\Polling\Tests;
 
@@ -21,7 +22,7 @@ class TimeoutTest extends TestCase
 
     private $timeoutMilliseconds;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->clock = $this->createMock('Matthias\Polling\ClockInterface');
         $this->waitMilliseconds = 10;
@@ -32,7 +33,7 @@ class TimeoutTest extends TestCase
     /**
      * @test
      */
-    public function it_times_out_after_a_given_amount_of_milliseconds()
+    public function it_times_out_after_a_given_amount_of_milliseconds(): void
     {
         $initialMicrotime = 1000000000;
 
@@ -58,7 +59,7 @@ class TimeoutTest extends TestCase
     /**
      * @test
      */
-    public function it_waits_for_the_given_amount_of_milliseconds()
+    public function it_waits_for_the_given_amount_of_milliseconds(): void
     {
         $startTime = 1000000 * microtime(true);
         $this->timeout->wait();
@@ -71,14 +72,14 @@ class TimeoutTest extends TestCase
     /**
      * @test
      */
-    public function it_fails_when_start_is_not_called_first()
+    public function it_fails_when_start_is_not_called_first(): void
     {
         $this->expectException('\LogicException', 'start()');
 
         $this->timeout->hasTimedOut();
     }
 
-    private function clockReturnsMicrotimes(array $microtimes)
+    private function clockReturnsMicrotimes(array $microtimes): void
     {
         static $at;
         if ($at === null) {

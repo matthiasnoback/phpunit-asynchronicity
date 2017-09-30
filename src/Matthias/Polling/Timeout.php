@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Matthias\Polling;
 
@@ -36,7 +37,7 @@ class Timeout implements TimeoutInterface
         return 1000 * $milliseconds;
     }
 
-    public function hasTimedOut()
+    public function hasTimedOut(): bool
     {
         if ($this->timeoutAt === null) {
             throw new \LogicException('You need to call start() first');

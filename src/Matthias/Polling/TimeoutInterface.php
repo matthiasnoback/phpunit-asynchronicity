@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Matthias\Polling;
 
@@ -6,10 +7,7 @@ interface TimeoutInterface
 {
     public function start();
 
-    /**
-     * @return boolean
-     */
-    public function hasTimedOut();
+    public function hasTimedOut(): bool;
 
     public function wait();
 }

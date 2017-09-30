@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Matthias\Polling;
 
@@ -6,8 +7,6 @@ interface ProbeInterface
 {
     /**
      * Whether or not the probe is satisfied with the current state of the system
-     *
-     * @return boolean
      */
-    public function isSatisfied();
+    public function isSatisfied(): bool;
 }
