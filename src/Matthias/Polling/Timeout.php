@@ -5,7 +5,7 @@ namespace Matthias\Polling;
 
 use Assert\Assertion;
 
-class Timeout implements TimeoutInterface
+final class Timeout implements TimeoutInterface
 {
     private $wait;
     private $clock;
@@ -14,10 +14,10 @@ class Timeout implements TimeoutInterface
 
     /**
      * @param ClockInterface $clock
-     * @param integer $wait Wait for n milliseconds
-     * @param integer $timeout Timeout after n milliseconds
+     * @param int $wait Wait for n milliseconds
+     * @param int $timeout Timeout after n milliseconds
      */
-    public function __construct(ClockInterface $clock, $wait, $timeout)
+    public function __construct(ClockInterface $clock, int $wait, int $timeout)
     {
         Assertion::integer($wait);
         Assertion::integer($timeout);
@@ -27,12 +27,12 @@ class Timeout implements TimeoutInterface
         $this->timeout = static::millisecondsToMicroseconds($timeout);
     }
 
-    public function start()
+    public function start(): void
     {
         $this->timeoutAt = $this->clock->getMicrotime() + $this->timeout;
     }
 
-    private static function millisecondsToMicroseconds($milliseconds)
+    private static function millisecondsToMicroseconds(int $milliseconds): int
     {
         return 1000 * $milliseconds;
     }
@@ -48,7 +48,7 @@ class Timeout implements TimeoutInterface
         return $now >= $this->timeoutAt;
     }
 
-    public function wait()
+    public function wait(): void
     {
         usleep($this->wait);
     }

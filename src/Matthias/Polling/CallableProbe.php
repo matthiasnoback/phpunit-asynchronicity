@@ -5,7 +5,7 @@ namespace Matthias\Polling;
 
 use Assert\Assertion;
 
-class CallableProbe implements ProbeInterface
+final class CallableProbe implements ProbeInterface
 {
     private $callable;
 

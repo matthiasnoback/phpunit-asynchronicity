@@ -5,11 +5,11 @@ namespace Matthias\PhpUnitAsynchronicity\Tests;
 
 use Matthias\Polling\ProbeInterface;
 
-class FileHasBeenCreated implements ProbeInterface
+final class FileHasBeenCreated implements ProbeInterface
 {
     private $path;
 
-    public function __construct($path)
+    public function __construct(string $path)
     {
         $this->path = $path;
     }

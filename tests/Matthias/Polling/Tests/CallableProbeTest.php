@@ -6,7 +6,7 @@ namespace Matthias\Polling\Tests;
 use Matthias\Polling\CallableProbe;
 use PHPUnit\Framework\TestCase;
 
-class CallableProbeTest extends TestCase
+final class CallableProbeTest extends TestCase
 {
     /**
      * @test
@@ -29,7 +29,7 @@ class CallableProbeTest extends TestCase
      */
     public function it_requires_a_valid_callable(): void
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(\InvalidArgumentException::class);
 
         new CallableProbe('not a valid callable');
     }
@@ -43,7 +43,7 @@ class CallableProbeTest extends TestCase
             return 'not a boolean value';
         });
 
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(\InvalidArgumentException::class);
 
         $callableProbe->isSatisfied();
     }

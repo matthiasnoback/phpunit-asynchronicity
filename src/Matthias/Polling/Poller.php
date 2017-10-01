@@ -5,7 +5,7 @@ namespace Matthias\Polling;
 
 use Matthias\Polling\Exception\Interrupted;
 
-class Poller
+final class Poller
 {
     public function poll(ProbeInterface $probe, TimeoutInterface $timeout)
     {

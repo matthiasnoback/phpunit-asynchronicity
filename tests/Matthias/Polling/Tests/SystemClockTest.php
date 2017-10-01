@@ -6,7 +6,7 @@ namespace Matthias\Polling\Tests;
 use Matthias\Polling\SystemClock;
 use PHPUnit\Framework\TestCase;
 
-class SystemClockTest extends TestCase
+final class SystemClockTest extends TestCase
 {
     /**
      * @test

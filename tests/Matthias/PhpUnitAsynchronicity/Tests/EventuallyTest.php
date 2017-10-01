@@ -6,8 +6,9 @@ namespace Matthias\PhpUnitAsynchronicity\Tests;
 use Matthias\PhpUnitAsynchronicity\Eventually;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use Matthias\Polling\ProbeInterface;
 
-class EventuallyTest extends TestCase
+final class EventuallyTest extends TestCase
 {
     /**
      * @var Eventually
@@ -15,14 +16,14 @@ class EventuallyTest extends TestCase
     private $constraint;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit_Framework_MockObject_MockObject|ProbeInterface
      */
     private $probe;
 
     protected function setUp(): void
     {
         $this->constraint = new Eventually(100, 50);
-        $this->probe = $this->createMock('Matthias\Polling\ProbeInterface');
+        $this->probe = $this->createMock(ProbeInterface::class);
     }
 
     /**
@@ -85,7 +86,8 @@ class EventuallyTest extends TestCase
     {
         $constraint = new Eventually();
 
-        $this->expectException('\InvalidArgumentException', 'ProbeInterface');
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('ProbeInterface');
 
         $constraint->evaluate(new \stdClass());
     }
@@ -97,12 +99,10 @@ class EventuallyTest extends TestCase
     {
         $constraint = new Eventually(10, 10);
 
-        $this->expectException(
-            '\PHPUnit\Framework\ExpectationFailedException',
-            "A timeout has occurred\nFailed asserting that the given probe was satisfied within the provided timeout."
-        );
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage("A timeout has occurred\nFailed asserting that the given probe was satisfied within the provided timeout.");
 
-        self::assertThat(function() {
+        self::assertThat(function () {
             // never pass
             return false;
         }, $constraint);
@@ -116,7 +116,9 @@ class EventuallyTest extends TestCase
     {
         $constraint = new Eventually();
 
-        $this->assertTrue($constraint->evaluate(function () { return true; }));
+        $this->assertTrue($constraint->evaluate(function () {
+            return true;
+        }));
     }
 
     private function probeAlwaysFails(): void

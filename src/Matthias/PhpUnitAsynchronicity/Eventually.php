@@ -11,7 +11,7 @@ use Matthias\Polling\SystemClock;
 use Matthias\Polling\Timeout;
 use PHPUnit\Framework\Constraint\Constraint;
 
-class Eventually extends Constraint
+final class Eventually extends Constraint
 {
     private $timeoutMilliseconds;
     private $waitMilliseconds;
@@ -43,9 +43,9 @@ class Eventually extends Constraint
         } catch (Interrupted $exception) {
             if ($returnResult) {
                 return false;
-            } else {
-                $this->fail($probe, ($description != '' ? $description . "\n" : '') . 'A timeout has occurred');
             }
+
+            $this->fail($probe, ($description !== '' ? $description . "\n" : '') . 'A timeout has occurred');
         }
 
         return true;
@@ -58,6 +58,6 @@ class Eventually extends Constraint
 
     public function toString()
     {
-        throw new \BadMethodCallException();
+        throw new \BadMethodCallException('Not implemented');
     }
 }

@@ -6,7 +6,7 @@ namespace Matthias\PhpUnitAsynchronicity\Tests;
 use Matthias\PhpUnitAsynchronicity\Eventually;
 use PHPUnit\Framework\TestCase;
 
-class IntegrationTest extends TestCase
+final class IntegrationTest extends TestCase
 {
     /**
      * @test
@@ -20,7 +20,7 @@ class IntegrationTest extends TestCase
         $timeoutMilliseconds = 2000;
         $waitMilliseconds = 1000;
 
-        $file = sys_get_temp_dir().'/'.uniqid();
+        $file = sys_get_temp_dir().'/'.uniqid('phpunit-asynchronicity', true);
         $this->assertFalse(file_exists($file));
 
         $pid = pcntl_fork();

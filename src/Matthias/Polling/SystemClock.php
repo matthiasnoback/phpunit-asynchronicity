@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Matthias\Polling;
 
-class SystemClock implements ClockInterface
+final class SystemClock implements ClockInterface
 {
     public function getMicrotime(): float
     {

@@ -3,10 +3,11 @@ declare(strict_types=1);
 
 namespace Matthias\Polling\Tests;
 
+use Matthias\Polling\ClockInterface;
 use Matthias\Polling\Timeout;
 use PHPUnit\Framework\TestCase;
 
-class TimeoutTest extends TestCase
+final class TimeoutTest extends TestCase
 {
     /**
      * @var Timeout
@@ -14,17 +15,23 @@ class TimeoutTest extends TestCase
     private $timeout;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit_Framework_MockObject_MockObject|ClockInterface
      */
     private $clock;
 
+    /**
+     * @var int
+     */
     private $waitMilliseconds;
 
+    /**
+     * @var int
+     */
     private $timeoutMilliseconds;
 
     protected function setUp(): void
     {
-        $this->clock = $this->createMock('Matthias\Polling\ClockInterface');
+        $this->clock = $this->createMock(ClockInterface::class);
         $this->waitMilliseconds = 10;
         $this->timeoutMilliseconds = 50;
         $this->timeout = new Timeout($this->clock, $this->waitMilliseconds, $this->timeoutMilliseconds);
@@ -74,7 +81,8 @@ class TimeoutTest extends TestCase
      */
     public function it_fails_when_start_is_not_called_first(): void
     {
-        $this->expectException('\LogicException', 'start()');
+        $this->expectException('\LogicException');
+        $this->expectExceptionMessage('start()');
 
         $this->timeout->hasTimedOut();
     }
