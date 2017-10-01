@@ -36,7 +36,7 @@ final class PollerTest extends TestCase
     /**
      * @test
      */
-    public function it_asks_the_probe_if_it_is_satisfied_with_a_sample_until_a_timeout_occurs(): void
+    public function it_asks_the_probe_if_it_is_satisfied_with_a_sample_until_a_timeout_occurs()
     {
         $this->pollerStartsTimeoutMechanism();
 
@@ -54,7 +54,7 @@ final class PollerTest extends TestCase
     /**
      * @test
      */
-    public function it_is_not_interrupted_if_no_timeout_occurs_and_the_probe_was_satisfied(): void
+    public function it_is_not_interrupted_if_no_timeout_occurs_and_the_probe_was_satisfied()
     {
         $this->pollerStartsTimeoutMechanism();
 
@@ -67,7 +67,7 @@ final class PollerTest extends TestCase
         $this->poller->poll($this->probe, $this->timeout);
     }
 
-    private function probeIsNeverSatisfied(): void
+    private function probeIsNeverSatisfied()
     {
         $this->probe
             ->expects($this->atLeastOnce())
@@ -75,7 +75,7 @@ final class PollerTest extends TestCase
             ->will($this->returnValue(false));
     }
 
-    private function timeoutOccursAtSecondRun(): void
+    private function timeoutOccursAtSecondRun()
     {
         $hasTimedOut = array(false, true);
 
@@ -93,26 +93,26 @@ final class PollerTest extends TestCase
             );
     }
 
-    private function pollerIsInterrupted(): void
+    private function pollerIsInterrupted()
     {
         $this->expectException(Interrupted::class);
     }
 
-    private function pollerStartsTimeoutMechanism(): void
+    private function pollerStartsTimeoutMechanism()
     {
         $this->timeout
             ->expects($this->once())
             ->method('start');
     }
 
-    private function pollerWaits(): void
+    private function pollerWaits()
     {
         $this->timeout
             ->expects($this->once())
             ->method('wait');
     }
 
-    private function timeoutNeverOccurs(): void
+    private function timeoutNeverOccurs()
     {
         $this->timeout
             ->expects($this->any())
@@ -120,7 +120,7 @@ final class PollerTest extends TestCase
             ->will($this->returnValue(false));
     }
 
-    private function probeIsSatisfiedAtSecondRun(): void
+    private function probeIsSatisfiedAtSecondRun()
     {
         $isSatisfied = array(false, true);
 

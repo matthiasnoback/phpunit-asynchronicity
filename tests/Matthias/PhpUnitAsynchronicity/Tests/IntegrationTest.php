@@ -11,7 +11,7 @@ final class IntegrationTest extends TestCase
     /**
      * @test
      */
-    public function it_waits_until_a_child_process_does_something(): void
+    public function it_waits_until_a_child_process_does_something()
     {
         if (!extension_loaded('pcntl')) {
             $this->markTestSkipped('Requires PCNTL extension');
@@ -36,7 +36,7 @@ final class IntegrationTest extends TestCase
             pcntl_wait($status);
         } else {
             // we are the child process
-            touch($file);
+            file_put_contents($file, 'test');
             exit;
         }
     }

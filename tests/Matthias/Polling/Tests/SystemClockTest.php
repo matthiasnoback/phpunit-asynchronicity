@@ -11,7 +11,7 @@ final class SystemClockTest extends TestCase
     /**
      * @test
      */
-    public function it_uses_system_function_microtime_to_retrieve_the_current_microtime(): void
+    public function it_uses_system_function_microtime_to_retrieve_the_current_microtime()
     {
         $systemClock = new SystemClock();
 

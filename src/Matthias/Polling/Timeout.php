@@ -27,7 +27,7 @@ final class Timeout implements TimeoutInterface
         $this->timeout = static::millisecondsToMicroseconds($timeout);
     }
 
-    public function start(): void
+    public function start()
     {
         $this->timeoutAt = $this->clock->getMicrotime() + $this->timeout;
     }
@@ -48,7 +48,7 @@ final class Timeout implements TimeoutInterface
         return $now >= $this->timeoutAt;
     }
 
-    public function wait(): void
+    public function wait()
     {
         usleep($this->wait);
     }

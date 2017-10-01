@@ -20,7 +20,7 @@ final class EventuallyTest extends TestCase
      */
     private $probe;
 
-    protected function setUp(): void
+    protected function setUp()
     {
         $this->constraint = new Eventually(100, 50);
         $this->probe = $this->createMock(ProbeInterface::class);
@@ -29,7 +29,7 @@ final class EventuallyTest extends TestCase
     /**
      * @test
      */
-    public function it_fails_when_a_timeout_occurs(): void
+    public function it_fails_when_a_timeout_occurs()
     {
         $this->probeAlwaysFails();
 
@@ -39,7 +39,7 @@ final class EventuallyTest extends TestCase
     /**
      * @test
      */
-    public function it_succeeds_when_a_timeout_has_not_occurred_and_the_probe_is_satisfied(): void
+    public function it_succeeds_when_a_timeout_has_not_occurred_and_the_probe_is_satisfied()
     {
         $this->probeIsSatisfied();
 
@@ -49,7 +49,7 @@ final class EventuallyTest extends TestCase
     /**
      * @test
      */
-    public function its_failure_message_contains_the_word_timeout(): void
+    public function its_failure_message_contains_the_word_timeout()
     {
         $this->probeAlwaysFails();
 
@@ -64,7 +64,7 @@ final class EventuallyTest extends TestCase
     /**
      * @test
      */
-    public function it_is_possible_to_add_a_specific_failure_message(): void
+    public function it_is_possible_to_add_a_specific_failure_message()
     {
         $this->probeAlwaysFails();
 
@@ -82,7 +82,7 @@ final class EventuallyTest extends TestCase
     /**
      * @test
      */
-    public function it_fails_if_something_else_than_a_probe_has_been_provided(): void
+    public function it_fails_if_something_else_than_a_probe_has_been_provided()
     {
         $constraint = new Eventually();
 
@@ -95,7 +95,7 @@ final class EventuallyTest extends TestCase
     /**
      * @test
      */
-    public function when_rendering_the_error_message_it_does_not_try_to_export_the_probe_itself_and_crash(): void
+    public function when_rendering_the_error_message_it_does_not_try_to_export_the_probe_itself_and_crash()
     {
         $constraint = new Eventually(10, 10);
 
@@ -112,7 +112,7 @@ final class EventuallyTest extends TestCase
     /**
      * @test
      */
-    public function it_accepts_a_closure_as_probe(): void
+    public function it_accepts_a_closure_as_probe()
     {
         $constraint = new Eventually();
 
@@ -121,7 +121,7 @@ final class EventuallyTest extends TestCase
         }));
     }
 
-    private function probeAlwaysFails(): void
+    private function probeAlwaysFails()
     {
         $this->probe
             ->expects($this->exactly(3))
@@ -129,7 +129,7 @@ final class EventuallyTest extends TestCase
             ->will($this->returnValue(false));
     }
 
-    private function probeIsSatisfied(): void
+    private function probeIsSatisfied()
     {
         $this->probe
             ->expects($this->once())

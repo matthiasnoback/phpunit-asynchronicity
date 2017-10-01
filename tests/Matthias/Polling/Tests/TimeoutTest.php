@@ -29,7 +29,7 @@ final class TimeoutTest extends TestCase
      */
     private $timeoutMilliseconds;
 
-    protected function setUp(): void
+    protected function setUp()
     {
         $this->clock = $this->createMock(ClockInterface::class);
         $this->waitMilliseconds = 10;
@@ -40,7 +40,7 @@ final class TimeoutTest extends TestCase
     /**
      * @test
      */
-    public function it_times_out_after_a_given_amount_of_milliseconds(): void
+    public function it_times_out_after_a_given_amount_of_milliseconds()
     {
         $initialMicrotime = 1000000000;
 
@@ -66,7 +66,7 @@ final class TimeoutTest extends TestCase
     /**
      * @test
      */
-    public function it_waits_for_the_given_amount_of_milliseconds(): void
+    public function it_waits_for_the_given_amount_of_milliseconds()
     {
         $startTime = 1000000 * microtime(true);
         $this->timeout->wait();
@@ -79,7 +79,7 @@ final class TimeoutTest extends TestCase
     /**
      * @test
      */
-    public function it_fails_when_start_is_not_called_first(): void
+    public function it_fails_when_start_is_not_called_first()
     {
         $this->expectException('\LogicException');
         $this->expectExceptionMessage('start()');
@@ -87,7 +87,7 @@ final class TimeoutTest extends TestCase
         $this->timeout->hasTimedOut();
     }
 
-    private function clockReturnsMicrotimes(array $microtimes): void
+    private function clockReturnsMicrotimes(array $microtimes)
     {
         static $at;
         if ($at === null) {
