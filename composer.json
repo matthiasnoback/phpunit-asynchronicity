@@ -23,6 +23,6 @@
     "require": {
         "php": "^7.0",
         "phpunit/phpunit": "~6.0",
-        "beberlei/assert": "~1.0"
+        "beberlei/assert": "~2.0"
     }
 }
