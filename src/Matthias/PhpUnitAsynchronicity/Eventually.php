@@ -56,7 +56,7 @@ final class Eventually extends Constraint
         return 'the given probe was satisfied within the provided timeout';
     }
 
-    public function toString()
+    public function toString(): string
     {
         throw new \BadMethodCallException('Not implemented');
     }
