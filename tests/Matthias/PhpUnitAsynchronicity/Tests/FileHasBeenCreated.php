@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Matthias\PhpUnitAsynchronicity\Tests;
 
-use Matthias\Polling\ProbeInterface;
+use Matthias\Polling\Probe;
 
-final class FileHasBeenCreated implements ProbeInterface
+final class FileHasBeenCreated implements Probe
 {
     private $path;
 

@@ -6,7 +6,7 @@ namespace Matthias\PhpUnitAsynchronicity\Tests;
 use Matthias\PhpUnitAsynchronicity\Eventually;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
-use Matthias\Polling\ProbeInterface;
+use Matthias\Polling\Probe;
 
 final class EventuallyTest extends TestCase
 {
@@ -16,14 +16,14 @@ final class EventuallyTest extends TestCase
     private $constraint;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|ProbeInterface
+     * @var \PHPUnit_Framework_MockObject_MockObject|Probe
      */
     private $probe;
 
     protected function setUp()
     {
         $this->constraint = new Eventually(100, 50);
-        $this->probe = $this->createMock(ProbeInterface::class);
+        $this->probe = $this->createMock(Probe::class);
     }
 
     /**

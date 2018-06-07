@@ -6,7 +6,7 @@ namespace Matthias\PhpUnitAsynchronicity;
 use Matthias\Polling\CallableProbe;
 use Matthias\Polling\Exception\Interrupted;
 use Matthias\Polling\Poller;
-use Matthias\Polling\ProbeInterface;
+use Matthias\Polling\Probe;
 use Matthias\Polling\SystemClock;
 use Matthias\Polling\Timeout;
 use PHPUnit\Framework\Constraint\Constraint;
@@ -30,7 +30,7 @@ final class Eventually extends Constraint
             $probe = new CallableProbe($probe);
         }
 
-        if (!($probe instanceof ProbeInterface)) {
+        if (!($probe instanceof Probe)) {
             throw new \InvalidArgumentException('Expected an instance of ProbeInterface');
         }
 

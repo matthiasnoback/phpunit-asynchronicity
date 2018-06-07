@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Matthias\Polling;
 
-interface ClockInterface
+interface Clock
 {
     public function getMicrotime(): float;
+
+    public function sleep(int $microseconds): void;
 }

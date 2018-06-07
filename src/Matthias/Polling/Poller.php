@@ -7,7 +7,7 @@ use Matthias\Polling\Exception\Interrupted;
 
 final class Poller
 {
-    public function poll(ProbeInterface $probe, TimeoutInterface $timeout)
+    public function poll(Probe $probe, Timeout $timeout): void
     {
         $timeout->start();
 

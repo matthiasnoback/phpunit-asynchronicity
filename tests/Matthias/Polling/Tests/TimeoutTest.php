@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Matthias\Polling\Tests;
 
-use Matthias\Polling\ClockInterface;
+use Matthias\Polling\Clock;
 use Matthias\Polling\Timeout;
 use PHPUnit\Framework\TestCase;
 
@@ -15,7 +15,7 @@ final class TimeoutTest extends TestCase
     private $timeout;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|ClockInterface
+     * @var \PHPUnit_Framework_MockObject_MockObject|Clock
      */
     private $clock;
 
@@ -31,7 +31,7 @@ final class TimeoutTest extends TestCase
 
     protected function setUp()
     {
-        $this->clock = $this->createMock(ClockInterface::class);
+        $this->clock = $this->createMock(Clock::class);
         $this->waitMilliseconds = 10;
         $this->timeoutMilliseconds = 50;
         $this->timeout = new Timeout($this->clock, $this->waitMilliseconds, $this->timeoutMilliseconds);
