@@ -1,13 +1,8 @@
 <?php
 declare(strict_types=1);
 
-namespace Matthias\Polling\Tests;
+namespace Asynchronicity\Polling;
 
-use Matthias\Polling\Clock;
-use Matthias\Polling\Interrupted;
-use Matthias\Polling\Poller;
-use Matthias\Polling\Probe;
-use Matthias\Polling\Timeout;
 use PHPUnit\Framework\TestCase;
 
 final class PollerTest extends TestCase

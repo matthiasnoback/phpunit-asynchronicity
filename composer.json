@@ -13,11 +13,13 @@
         }
     ],
     "autoload": {
-        "psr-0": {
-            "Matthias\\PhpUnitAsynchronicity\\": "src/",
-            "Matthias\\Polling\\": "src/",
-            "Matthias\\PhpUnitAsynchronicity\\Tests": "tests/",
-            "Matthias\\Polling\\Tests": "tests/"
+        "psr-4": {
+            "Asynchronicity\\": "src/Asynchronicity/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Asynchronicity\\": "tests/Asynchronicity/"
         }
     },
     "require": {

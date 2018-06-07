@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Matthias\Polling;
+namespace Asynchronicity\Polling;
 
 final class SystemClock implements Clock
 {

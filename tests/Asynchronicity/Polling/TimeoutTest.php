@@ -1,10 +1,8 @@
 <?php
 declare(strict_types=1);
 
-namespace Matthias\Polling\Tests;
+namespace Asynchronicity\Polling;
 
-use Matthias\Polling\Clock;
-use Matthias\Polling\Timeout;
 use PHPUnit\Framework\TestCase;
 
 final class TimeoutTest extends TestCase

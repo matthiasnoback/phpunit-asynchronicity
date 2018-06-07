@@ -1,9 +1,8 @@
 <?php
 declare(strict_types=1);
 
-namespace Matthias\Polling\Tests;
+namespace Asynchronicity\Polling;
 
-use Matthias\Polling\SystemClock;
 use PHPUnit\Framework\TestCase;
 
 final class SystemClockTest extends TestCase

@@ -1,9 +1,8 @@
 <?php
 declare(strict_types=1);
 
-namespace Matthias\Polling\Tests;
+namespace Asynchronicity\Polling;
 
-use Matthias\Polling\CallableProbe;
 use PHPUnit\Framework\TestCase;
 
 final class CallableProbeTest extends TestCase

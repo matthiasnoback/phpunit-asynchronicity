@@ -1,9 +1,8 @@
 <?php
 declare(strict_types=1);
 
-namespace Matthias\PhpUnitAsynchronicity\Tests;
+namespace Asynchronicity\PHPUnit;
 
-use Matthias\PhpUnitAsynchronicity\Eventually;
 use PHPUnit\Framework\TestCase;
 
 final class IntegrationTest extends TestCase

@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Matthias\PhpUnitAsynchronicity;
+namespace Asynchronicity\PHPUnit;
 
-use Matthias\Polling\CallableProbe;
-use Matthias\Polling\Interrupted;
-use Matthias\Polling\Poller;
-use Matthias\Polling\Probe;
-use Matthias\Polling\SystemClock;
-use Matthias\Polling\Timeout;
+use Asynchronicity\Polling\CallableProbe;
+use Asynchronicity\Polling\Interrupted;
+use Asynchronicity\Polling\Poller;
+use Asynchronicity\Polling\Probe;
+use Asynchronicity\Polling\SystemClock;
+use Asynchronicity\Polling\Timeout;
 use PHPUnit\Framework\Constraint\Constraint;
 
 final class Eventually extends Constraint

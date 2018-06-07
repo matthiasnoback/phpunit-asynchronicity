@@ -1,9 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Matthias\Polling;
-
-use Matthias\Polling\Interrupted;
+namespace Asynchronicity\Polling;
 
 final class Poller
 {

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Matthias\PhpUnitAsynchronicity\Tests;
+namespace Asynchronicity\PHPUnit;
 
-use Matthias\Polling\Probe;
+use Asynchronicity\Polling\Probe;
 
 final class FileHasBeenCreated implements Probe
 {

@@ -1,12 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Matthias\PhpUnitAsynchronicity\Tests;
+namespace Asynchronicity\PHPUnit;
 
-use Matthias\PhpUnitAsynchronicity\Eventually;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
-use Matthias\Polling\Probe;
+use Asynchronicity\Polling\Probe;
 
 final class EventuallyTest extends TestCase
 {
