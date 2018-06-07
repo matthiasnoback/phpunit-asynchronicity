@@ -5,7 +5,7 @@ namespace Matthias\Polling;
 
 interface Clock
 {
-    public function getMicrotime(): float;
+    public function getMicrotime(): int;
 
     public function sleep(int $microseconds): void;
 }

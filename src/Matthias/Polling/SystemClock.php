@@ -5,9 +5,9 @@ namespace Matthias\Polling;
 
 final class SystemClock implements Clock
 {
-    public function getMicrotime(): float
+    public function getMicrotime(): int
     {
-        return 1000000 * microtime(true);
+        return (int)round(1000000 * microtime(true));
     }
 
     public function sleep(int $microseconds): void
