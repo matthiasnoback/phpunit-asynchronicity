@@ -13,7 +13,7 @@ final class Poller
 
         while (!$probe->isSatisfied()) {
             if ($timeout->hasTimedOut()) {
-                throw new Interrupted();
+                throw new Interrupted('A timeout has occurred');
             }
 
             $timeout->wait();

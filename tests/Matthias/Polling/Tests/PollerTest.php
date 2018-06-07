@@ -45,7 +45,7 @@ final class PollerTest extends TestCase
     /**
      * @test
      */
-    public function it_asks_the_probe_if_it_is_satisfied_with_a_sample_and_waits_if_necessary_until_a_timeout_occurs()
+    public function it_asks_the_probe_if_it_is_satisfied_with_a_sample_and_waits_if_necessary_until_a_timeout_occurs(): void
     {
         $this->clock->expects($this->any())
             ->method('getMicrotime')
@@ -68,7 +68,7 @@ final class PollerTest extends TestCase
     /**
      * @test
      */
-    public function it_is_not_interrupted_if_no_timeout_occurs_and_the_probe_was_satisfied()
+    public function it_is_not_interrupted_if_no_timeout_occurs_and_the_probe_was_satisfied(): void
     {
         $this->clock->expects($this->any())
             ->method('getMicrotime')
@@ -90,7 +90,7 @@ final class PollerTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    private function probeIsNeverSatisfied()
+    private function probeIsNeverSatisfied(): void
     {
         $this->probe
             ->expects($this->atLeastOnce())
@@ -98,9 +98,9 @@ final class PollerTest extends TestCase
             ->will($this->returnValue(false));
     }
 
-    private function probeIsSatisfiedAtSecondRun()
+    private function probeIsSatisfiedAtSecondRun(): void
     {
-        $isSatisfied = array(false, true);
+        $isSatisfied = [false, true];
 
         $this->probe
             ->expects($this->any())

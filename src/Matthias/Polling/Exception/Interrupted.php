@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Matthias\Polling\Exception;
 
-final class Interrupted extends \RuntimeException
+use RuntimeException;
+
+final class Interrupted extends RuntimeException
 {
 }

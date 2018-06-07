@@ -17,7 +17,7 @@ final class CallableProbe implements Probe
 
     public function isSatisfied(): bool
     {
-        $isSatisfied = call_user_func($this->callable);
+        $isSatisfied = \call_user_func($this->callable);
 
         Assertion::boolean($isSatisfied, 'Callable should return a boolean value');
 

@@ -26,7 +26,7 @@ final class Eventually extends Constraint
 
     public function evaluate($probe, $description = '', $returnResult = false)
     {
-        if (is_callable($probe)) {
+        if (\is_callable($probe)) {
             $probe = new CallableProbe($probe);
         }
 
@@ -45,7 +45,7 @@ final class Eventually extends Constraint
                 return false;
             }
 
-            $this->fail($probe, ($description !== '' ? $description . "\n" : '') . 'A timeout has occurred');
+            $this->fail($probe, ($description !== '' ? $description . "\n" : '') . $exception->getMessage());
         }
 
         return true;

@@ -7,9 +7,24 @@ use Assert\Assertion;
 
 final class Timeout
 {
+    /**
+     * @var int
+     */
     private $wait;
+
+    /**
+     * @var Clock
+     */
     private $clock;
+
+    /**
+     * @var int
+     */
     private $timeout;
+
+    /**
+     * @var int
+     */
     private $timeoutAt;
 
     /**
@@ -27,7 +42,7 @@ final class Timeout
         $this->timeout = static::millisecondsToMicroseconds($timeout);
     }
 
-    public function start()
+    public function start(): void
     {
         $this->timeoutAt = $this->clock->getMicrotime() + $this->timeout;
     }
@@ -48,7 +63,7 @@ final class Timeout
         return $now >= $this->timeoutAt;
     }
 
-    public function wait()
+    public function wait(): void
     {
         $this->clock->sleep($this->wait);
     }
