@@ -19,8 +19,8 @@ final class Timeout
      */
     public function __construct(Clock $clock, int $wait, int $timeout)
     {
-        Assertion::integer($wait);
-        Assertion::integer($timeout);
+        Assertion::greaterThan($wait, 0, 'Wait time should be greater than 0');
+        Assertion::greaterThan($timeout, 0, 'Timeout should be greater than 0, or a timeout will happen immediately');
 
         $this->clock = $clock;
         $this->wait = static::millisecondsToMicroseconds($wait);

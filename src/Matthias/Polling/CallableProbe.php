@@ -11,7 +11,7 @@ final class CallableProbe implements Probe
 
     public function __construct($callable)
     {
-        Assertion::true(is_callable($callable), 'Provide a valid callable');
+        Assertion::isCallable($callable, 'Provide a valid callable for the probe');
         $this->callable = $callable;
     }
 
