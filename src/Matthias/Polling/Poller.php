@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Matthias\Polling;
 
-use Matthias\Polling\Exception\Interrupted;
+use Matthias\Polling\Interrupted;
 
 final class Poller
 {

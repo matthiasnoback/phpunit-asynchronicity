@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Matthias\Polling\Tests;
 
 use Matthias\Polling\Clock;
-use Matthias\Polling\Exception\Interrupted;
+use Matthias\Polling\Interrupted;
 use Matthias\Polling\Poller;
 use Matthias\Polling\Probe;
 use Matthias\Polling\Timeout;
