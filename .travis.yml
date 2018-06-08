@@ -11,6 +11,7 @@ before_script:
   - composer install --prefer-dist
 
 script:
+  - vendor/bin/phpstan analyse -l max src/
   - vendor/bin/phpunit
 
 cache:
