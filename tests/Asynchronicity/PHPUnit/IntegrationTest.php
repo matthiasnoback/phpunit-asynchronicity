@@ -7,6 +7,8 @@ use PHPUnit\Framework\TestCase;
 
 final class IntegrationTest extends TestCase
 {
+    use Asynchronicity;
+
     /**
      * @test
      */
@@ -27,10 +29,7 @@ final class IntegrationTest extends TestCase
             $this->fail('Could not create child process');
         } elseif ($pid > 0) {
             // the child process has been created
-            self::assertThat(
-                new FileHasBeenCreated($file),
-                new Eventually($timeoutMilliseconds, $waitMilliseconds)
-            );
+            self::assertEventually(new FileHasBeenCreated($file), $timeoutMilliseconds, $waitMilliseconds);
             unlink($file);
             pcntl_wait($status);
         } else {
