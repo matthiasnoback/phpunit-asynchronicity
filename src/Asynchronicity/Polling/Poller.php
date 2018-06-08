@@ -7,6 +7,13 @@ use Exception;
 
 final class Poller
 {
+    /**
+     * Invoke the provided callable until it doesn't throw an exception anymore, or a timeout occurs. The poller will wait before invoking the
+     * callable again.
+     *
+     * @param callable $probe
+     * @param Timeout $timeout
+     */
     public function poll(callable $probe, Timeout $timeout): void
     {
         $timeout->start();

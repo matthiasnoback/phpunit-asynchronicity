@@ -11,6 +11,9 @@ use PHPUnit\Framework\Constraint\Constraint;
 trait Asynchronicity
 {
     /**
+     * Provide a callable. It will be invoked until it doesn't throw an exception anymore, or the given timeout in milliseconds has passed.
+     * Before trying again, the process will wait (sleep) for the duration of the optionally provided amount of milliseconds.
+     *
      * @param callable $probe
      * @param int $timeoutMilliseconds
      * @param int $waitMilliseconds
