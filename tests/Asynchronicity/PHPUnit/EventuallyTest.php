@@ -5,7 +5,6 @@ namespace Asynchronicity\PHPUnit;
 
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
-use Asynchronicity\Polling\Probe;
 
 final class EventuallyTest extends TestCase
 {
@@ -15,14 +14,13 @@ final class EventuallyTest extends TestCase
     private $constraint;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|Probe
+     * @var callable
      */
     private $probe;
 
     protected function setUp()
     {
         $this->constraint = new Eventually(100, 50);
-        $this->probe = $this->createMock(Probe::class);
     }
 
     /**
@@ -81,30 +79,15 @@ final class EventuallyTest extends TestCase
     /**
      * @test
      */
-    public function it_fails_if_something_else_than_a_probe_has_been_provided(): void
-    {
-        $constraint = new Eventually();
-
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('ProbeInterface');
-
-        $constraint->evaluate(new \stdClass());
-    }
-
-    /**
-     * @test
-     */
     public function when_rendering_the_error_message_it_does_not_try_to_export_the_probe_itself_and_crash(): void
     {
+        $this->probeAlwaysFails();
         $constraint = new Eventually(10, 10);
 
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage("A timeout has occurred\nFailed asserting that the given probe was satisfied within the provided timeout.");
 
-        self::assertThat(function () {
-            // never pass
-            return false;
-        }, $constraint);
+        self::assertThat($this->probe, $constraint);
     }
 
 
@@ -122,17 +105,15 @@ final class EventuallyTest extends TestCase
 
     private function probeAlwaysFails(): void
     {
-        $this->probe
-            ->expects($this->exactly(3))
-            ->method('isSatisfied')
-            ->will($this->returnValue(false));
+        $this->probe = function () {
+            throw new \RuntimeException('I am never satisfied');
+        };
     }
 
     private function probeIsSatisfied(): void
     {
-        $this->probe
-            ->expects($this->once())
-            ->method('isSatisfied')
-            ->will($this->returnValue(true));
+        $this->probe = function () {
+            // I am satisfied, so I don't throw an exception
+        };
     }
 }

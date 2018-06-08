@@ -3,9 +3,7 @@ declare(strict_types=1);
 
 namespace Asynchronicity\PHPUnit;
 
-use Asynchronicity\Polling\Probe;
-
-final class FileHasBeenCreated implements Probe
+final class FileHasBeenCreated
 {
     private $path;
 
@@ -14,8 +12,10 @@ final class FileHasBeenCreated implements Probe
         $this->path = $path;
     }
 
-    public function isSatisfied(): bool
+    public function __invoke(): void
     {
-        return is_file($this->path);
+        if (!is_file($this->path)) {
+            throw new \RuntimeException(sprintf('File %s does not exist', $this->path));
+        }
     }
 }

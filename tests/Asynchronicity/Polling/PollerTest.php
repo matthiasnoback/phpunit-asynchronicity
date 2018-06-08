@@ -10,7 +10,7 @@ final class PollerTest extends TestCase
     private $waitTimeInMilliseconds = 1000;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|Probe
+     * @var callable
      */
     private $probe;
 
@@ -31,7 +31,6 @@ final class PollerTest extends TestCase
 
     protected function setUp()
     {
-        $this->probe = $this->createMock(Probe::class);
         $this->clock = $this->createMock(Clock::class);
         $this->timeout = new Timeout($this->clock, $this->waitTimeInMilliseconds, 5000);
         $this->poller = new Poller();
@@ -68,10 +67,8 @@ final class PollerTest extends TestCase
         $this->clock->expects($this->any())
             ->method('getMicrotime')
             ->willReturn(
-            // start time: 0
-                0,
-                // next time: 1 second, which is well within the configured timeout of 5000
-                1 * 1000000
+                0, // start time: 0
+                1 * 1000000 // next time: 1 second, which is well within the configured timeout of 5000
             );
         $this->clock->expects($this->once())
             ->method('sleep')
@@ -87,29 +84,24 @@ final class PollerTest extends TestCase
 
     private function probeIsNeverSatisfied(): void
     {
-        $this->probe
-            ->expects($this->atLeastOnce())
-            ->method('isSatisfied')
-            ->will($this->returnValue(false));
+        $this->probe = function () {
+            throw new \RuntimeException('I am never satisfied');
+        };
     }
 
     private function probeIsSatisfiedAtSecondRun(): void
     {
         $isSatisfied = [false, true];
 
-        $this->probe
-            ->expects($this->any())
-            ->method('isSatisfied')
-            ->will(
-                $this->returnCallback(
-                    function () use (&$isSatisfied) {
-                        $result = current($isSatisfied);
+        $this->probe = function () use (&$isSatisfied) {
+            $expectedToBeSatisfied = current($isSatisfied);
+            next($isSatisfied);
 
-                        next($isSatisfied);
+            if (!$expectedToBeSatisfied) {
+                throw new \RuntimeException('I am not satisfied yet');
+            }
 
-                        return $result;
-                    }
-                )
-            );
+            return null;
+        };
     }
 }

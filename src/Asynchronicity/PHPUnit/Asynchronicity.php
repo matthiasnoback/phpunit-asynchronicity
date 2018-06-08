@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Asynchronicity\PHPUnit;
 
-use Asynchronicity\Polling\Probe;
 use PHPUnit\Framework\Constraint\Constraint;
 
 /**
@@ -12,11 +11,11 @@ use PHPUnit\Framework\Constraint\Constraint;
 trait Asynchronicity
 {
     /**
-     * @param callable|Probe $probe
+     * @param callable $probe
      * @param int $timeoutMilliseconds
      * @param int $waitMilliseconds
      */
-    public static function assertEventually($probe, int $timeoutMilliseconds = 5000, int $waitMilliseconds = 500): void
+    public static function assertEventually(callable $probe, int $timeoutMilliseconds = 5000, int $waitMilliseconds = 500): void
     {
         self::assertThat(
             $probe,
