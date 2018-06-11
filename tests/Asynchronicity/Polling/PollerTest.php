@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Asynchronicity\Polling;
 
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
 final class PollerTest extends TestCase
@@ -85,7 +86,7 @@ final class PollerTest extends TestCase
     private function probeIsNeverSatisfied(): void
     {
         $this->probe = function () {
-            throw new \RuntimeException('I am never satisfied');
+            Assert::assertTrue(false, 'I am never satisfied');
         };
     }
 
@@ -97,11 +98,7 @@ final class PollerTest extends TestCase
             $expectedToBeSatisfied = current($isSatisfied);
             next($isSatisfied);
 
-            if (!$expectedToBeSatisfied) {
-                throw new \RuntimeException('I am not satisfied yet');
-            }
-
-            return null;
+            Assert::assertTrue($expectedToBeSatisfied);
         };
     }
 }

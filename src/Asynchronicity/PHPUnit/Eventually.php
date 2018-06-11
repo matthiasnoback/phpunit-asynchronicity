@@ -35,7 +35,7 @@ final class Eventually extends Constraint
                 return false;
             }
 
-            $this->fail($probe, ($description !== '' ? $description . "\n" : '') . $exception->getMessage());
+            throw $exception;
         }
 
         return true;

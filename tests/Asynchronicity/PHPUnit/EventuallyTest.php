@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Asynchronicity\PHPUnit;
 
-use PHPUnit\Framework\ExpectationFailedException;
+use Asynchronicity\Polling\Interrupted;
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
 final class EventuallyTest extends TestCase
@@ -53,26 +54,8 @@ final class EventuallyTest extends TestCase
         try {
             $this->assertFalse($this->constraint->evaluate($this->probe));
             $this->fail('Expected the constraint to fail');
-        } catch (ExpectationFailedException $exception) {
+        } catch (Interrupted $exception) {
             $this->assertContains('timeout', $exception->getMessage());
-        }
-    }
-
-    /**
-     * @test
-     */
-    public function it_is_possible_to_add_a_specific_failure_message(): void
-    {
-        $this->probeAlwaysFails();
-
-        $specificMessage = 'Something did not happen';
-
-        try {
-            $this->assertFalse($this->constraint->evaluate($this->probe, $specificMessage));
-            $this->fail('Expected the constraint to fail');
-        } catch (ExpectationFailedException $exception) {
-            $this->assertContains($specificMessage, $exception->getMessage());
-            $this->assertContains('A timeout has occurred', $exception->getMessage());
         }
     }
 
@@ -84,12 +67,11 @@ final class EventuallyTest extends TestCase
         $this->probeAlwaysFails();
         $constraint = new Eventually(10, 10);
 
-        $this->expectException(ExpectationFailedException::class);
-        $this->expectExceptionMessage("A timeout has occurred\nFailed asserting that the given probe was satisfied within the provided timeout.");
+        $this->expectException(Interrupted::class);
+        $this->expectExceptionMessage('A timeout has occurred');
 
         self::assertThat($this->probe, $constraint);
     }
-
 
     /**
      * @test
@@ -106,14 +88,15 @@ final class EventuallyTest extends TestCase
     private function probeAlwaysFails(): void
     {
         $this->probe = function () {
-            throw new \RuntimeException('I am never satisfied');
+            Assert::assertTrue(false, 'I am never satisfied');
         };
     }
 
     private function probeIsSatisfied(): void
     {
         $this->probe = function () {
-            // I am satisfied, so I don't throw an exception
+            // I am always satisfied, so I don't throw an exception
+            Assert::assertTrue(true);
         };
     }
 }

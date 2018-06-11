@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Asynchronicity\PHPUnit;
 
+use PHPUnit\Framework\Assert;
+
 final class FileHasBeenCreated
 {
     private $path;
@@ -14,8 +16,6 @@ final class FileHasBeenCreated
 
     public function __invoke(): void
     {
-        if (!is_file($this->path)) {
-            throw new \RuntimeException(sprintf('File %s does not exist', $this->path));
-        }
+        Assert::assertFileExists($this->path);
     }
 }
