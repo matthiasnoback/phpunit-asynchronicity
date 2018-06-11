@@ -3,11 +3,8 @@ declare(strict_types=1);
 
 namespace Asynchronicity\PHPUnit;
 
-use PHPUnit\Framework\Constraint\Constraint;
+use PHPUnit\Framework\Assert;
 
-/**
- * @method static assertThat($value, Constraint $constraint)
- */
 trait Asynchronicity
 {
     /**
@@ -20,7 +17,7 @@ trait Asynchronicity
      */
     public static function assertEventually(callable $probe, int $timeoutMilliseconds = 5000, int $waitMilliseconds = 500): void
     {
-        self::assertThat(
+        Assert::assertThat(
             $probe,
             new Eventually($timeoutMilliseconds, $waitMilliseconds)
         );
