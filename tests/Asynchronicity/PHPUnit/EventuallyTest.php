@@ -19,7 +19,7 @@ final class EventuallyTest extends TestCase
      */
     private $probe;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->constraint = new Eventually(100, 50);
     }
@@ -55,7 +55,7 @@ final class EventuallyTest extends TestCase
             $this->assertFalse($this->constraint->evaluate($this->probe));
             $this->fail('Expected the constraint to fail');
         } catch (Interrupted $exception) {
-            $this->assertContains('timeout', $exception->getMessage());
+            $this->assertStringContainsString('timeout', $exception->getMessage());
         }
     }
 

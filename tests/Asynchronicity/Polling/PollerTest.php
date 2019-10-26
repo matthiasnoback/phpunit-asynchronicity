@@ -30,7 +30,7 @@ final class PollerTest extends TestCase
      */
     private $timeout;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->clock = $this->createMock(Clock::class);
         $this->timeout = new Timeout($this->clock, $this->waitTimeInMilliseconds, 5000);

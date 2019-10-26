@@ -27,7 +27,7 @@ final class TimeoutTest extends TestCase
      */
     private $timeoutMilliseconds;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->clock = $this->createMock(Clock::class);
         $this->waitMilliseconds = 10;

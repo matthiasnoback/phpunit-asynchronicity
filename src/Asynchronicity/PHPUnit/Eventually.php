@@ -16,13 +16,11 @@ final class Eventually extends Constraint
 
     public function __construct(int $timeoutMilliseconds = 5000, int $waitMilliseconds = 500)
     {
-        parent::__construct();
-
         $this->timeoutMilliseconds = $timeoutMilliseconds;
         $this->waitMilliseconds = $waitMilliseconds;
     }
 
-    public function evaluate($probe, $description = '', $returnResult = false)
+    public function evaluate($probe, string $description = '', bool $returnResult = false)
     {
         try {
             $poller = new Poller();
