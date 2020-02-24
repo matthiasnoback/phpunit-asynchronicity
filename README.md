@@ -24,10 +24,10 @@ final class ProcessTest extends TestCase
      */
     public function it_creates_a_pid_file(): void
     {
-        // start the asynchronous process that will eventually create a PID file...  
-    
+        // start the asynchronous process that will eventually create a PID file...
+
         self::assertEventually(
-            function () {
+            function (): void {
                 Assert::assertFileExists(__DIR__ . '/pid');
             }
         );
@@ -53,7 +53,7 @@ final class FeatureContext extends MinkContext
      */
     public function thenTheFileHasBeenCreated(string $expectedStockLevel): void
     {
-        self::assertEventually(function () use ($expectedStockLevel) {
+        self::assertEventually(function () use ($expectedStockLevel): void {
             $this->visit('/stock-levels');
 
             $actualStockLevel = $this->getSession()->getPage())->find('css', '.stock-level')->getText();
