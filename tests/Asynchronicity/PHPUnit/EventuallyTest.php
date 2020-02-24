@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Asynchronicity\PHPUnit;
 
 use Asynchronicity\Polling\Interrupted;
+use Asynchronicity\Polling\IncorrectUsage;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
@@ -76,27 +77,50 @@ final class EventuallyTest extends TestCase
     /**
      * @test
      */
+    public function it_fails_if_the_user_returns_false_from_the_probe(): void
+    {
+        $this->probeReturnsFalse();
+
+        $constraint = new Eventually(10, 10);
+
+        $this->expectException(IncorrectUsage::class);
+        $this->expectExceptionMessage('should not return anything');
+
+        self::assertThat($this->probe, $constraint);
+    }
+
+    /**
+     * @test
+     */
     public function it_accepts_a_closure_as_probe(): void
     {
         $constraint = new Eventually();
 
-        $this->assertTrue($constraint->evaluate(function () {
-            return true;
+        $this->assertTrue($constraint->evaluate(function (): void {
+            return;
         }));
     }
 
     private function probeAlwaysFails(): void
     {
-        $this->probe = function () {
+        $this->probe = function (): void {
             Assert::assertTrue(false, 'I am never satisfied');
         };
     }
 
     private function probeIsSatisfied(): void
     {
-        $this->probe = function () {
+        $this->probe = function (): void {
             // I am always satisfied, so I don't throw an exception
             Assert::assertTrue(true);
+        };
+    }
+
+    private function probeReturnsFalse(): void
+    {
+        $this->probe = function (): bool {
+            // Incorrect usage; the probe shouldn't return anything.
+            return false;
         };
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Asynchronicity\Polling;
 
 use Exception;
+use PDO;
 
 final class Poller
 {
@@ -21,10 +22,16 @@ final class Poller
 
         while (true) {
             try {
-                $probe();
+                $returnValue = $probe();
+
+                if ($returnValue !== null) {
+                    throw IncorrectUsage::theProbeShouldNotReturnAnything();
+                }
 
                 // the probe was successful, so we can return now
                 return;
+            } catch (IncorrectUsage $exception) {
+                throw $exception;
             } catch (Exception $exception) {
                 // the probe was unsuccessful, we remember the last exception
                 $lastException = $exception;
