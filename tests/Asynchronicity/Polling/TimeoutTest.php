@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Asynchronicity\Polling;
 
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class TimeoutTest extends TestCase
@@ -13,7 +14,7 @@ final class TimeoutTest extends TestCase
     private $timeout;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|Clock
+     * @var MockObject|Clock
      */
     private $clock;
 

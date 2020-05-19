@@ -22,7 +22,7 @@ final class IntegrationTest extends TestCase
         $waitMilliseconds = 1000;
 
         $file = sys_get_temp_dir().'/'.uniqid('phpunit-asynchronicity', true);
-        $this->assertFileNotExists($file);
+        $this->assertFileDoesNotExist($file);
 
         $pid = pcntl_fork();
         if ($pid === -1) {
