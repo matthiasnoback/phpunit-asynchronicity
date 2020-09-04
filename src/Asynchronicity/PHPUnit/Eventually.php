@@ -20,7 +20,7 @@ final class Eventually extends Constraint
         $this->waitMilliseconds = $waitMilliseconds;
     }
 
-    public function evaluate($probe, string $description = '', bool $returnResult = false)
+    public function evaluate($probe, string $description = '', bool $returnResult = false): ?bool
     {
         try {
             $poller = new Poller();
