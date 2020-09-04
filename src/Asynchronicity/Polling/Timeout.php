@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Asynchronicity\Polling;
 
-use Assert\Assertion;
+use InvalidArgumentException;
+use LogicException;
 
 final class Timeout
 {
@@ -34,8 +35,12 @@ final class Timeout
      */
     public function __construct(Clock $clock, int $wait, int $timeout)
     {
-        Assertion::greaterThan($wait, 0, 'Wait time should be greater than 0');
-        Assertion::greaterThan($timeout, 0, 'Timeout should be greater than 0, or a timeout will happen immediately');
+        if ($wait <= 0) {
+            throw new InvalidArgumentException('Wait time should be greater than 0');
+        }
+        if ($timeout <= 0) {
+            throw new InvalidArgumentException('Timeout should be greater than 0, or a timeout will happen immediately');
+        }
 
         $this->clock = $clock;
         $this->wait = static::millisecondsToMicroseconds($wait);
@@ -55,7 +60,7 @@ final class Timeout
     public function hasTimedOut(): bool
     {
         if ($this->timeoutAt === null) {
-            throw new \LogicException('You need to call start() first');
+            throw new LogicException('You need to call start() first');
         }
 
         $now = $this->clock->getMicrotime();
