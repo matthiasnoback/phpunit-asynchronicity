@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Asynchronicity\Polling;
 
 use Exception;
-use PDO;
 
 final class Poller
 {
