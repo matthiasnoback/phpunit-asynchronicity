@@ -37,7 +37,11 @@ final class Poller
             }
 
             if ($timeout->hasTimedOut()) {
-                throw new Interrupted('A timeout has occurred', 0, $lastException);
+                throw new Interrupted(
+                    'A timeout has occurred. Last exception: ' . $lastException->getMessage(),
+                    0,
+                    $lastException
+                );
             }
 
             // we wait before trying again
