@@ -101,6 +101,16 @@ final class EventuallyTest extends TestCase
         }));
     }
 
+    /**
+     * @test
+     */
+    public function it_is_stringable(): void
+    {
+        $constraint = new Eventually();
+
+        $this->assertSame('Eventually', $constraint->toString());
+    }
+
     private function probeAlwaysFails(): void
     {
         $this->probe = function (): void {
