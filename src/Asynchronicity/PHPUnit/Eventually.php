@@ -46,6 +46,6 @@ final class Eventually extends Constraint
 
     public function toString(): string
     {
-        throw new \BadMethodCallException('Not implemented');
+        return 'Eventually';
     }
 }
