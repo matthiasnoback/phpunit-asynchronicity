@@ -11,8 +11,8 @@ use PHPUnit\Framework\Constraint\Constraint;
 
 final class Eventually extends Constraint
 {
-    private $timeoutMilliseconds;
-    private $waitMilliseconds;
+    private int $timeoutMilliseconds;
+    private int $waitMilliseconds;
 
     public function __construct(int $timeoutMilliseconds = 5000, int $waitMilliseconds = 500)
     {
