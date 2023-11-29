@@ -7,7 +7,7 @@ use PHPUnit\Framework\Assert;
 
 final class FileHasBeenCreated
 {
-    private $path;
+    private string $path;
 
     public function __construct(string $path)
     {

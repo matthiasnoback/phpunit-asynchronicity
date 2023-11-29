@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 final class PollerTest extends TestCase
 {
-    private $waitTimeInMilliseconds = 1000;
+    private int $waitTimeInMilliseconds = 1000;
 
     /**
      * @var callable

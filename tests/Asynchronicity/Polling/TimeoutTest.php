@@ -14,7 +14,7 @@ final class TimeoutTest extends TestCase
     private $timeout;
 
     /**
-     * @var MockObject & Clock
+     * @var MockObject&Clock
      */
     private $clock;
 
