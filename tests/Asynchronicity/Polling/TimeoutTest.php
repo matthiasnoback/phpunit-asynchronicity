@@ -86,6 +86,9 @@ final class TimeoutTest extends TestCase
         $this->timeout->hasTimedOut();
     }
 
+    /**
+     * @param int[] $microtimes
+     */
     private function clockReturnsMicrotimes(array $microtimes): void
     {
         $this->clock

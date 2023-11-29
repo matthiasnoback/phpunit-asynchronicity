@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Asynchronicity\Polling;
 
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class PollerTest extends TestCase
@@ -21,7 +22,7 @@ final class PollerTest extends TestCase
     private $poller;
 
     /**
-     * @var Clock
+     * @var Clock&MockObject
      */
     private $clock;
 

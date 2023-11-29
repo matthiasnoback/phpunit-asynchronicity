@@ -10,10 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 final class EventuallyTest extends TestCase
 {
-    /**
-     * @var Eventually
-     */
-    private $constraint;
+    private Eventually $constraint;
 
     /**
      * @var callable
@@ -99,6 +96,17 @@ final class EventuallyTest extends TestCase
         $this->assertTrue($constraint->evaluate(function (): void {
             return;
         }));
+    }
+
+    /**
+     * @test
+     */
+    public function it_throws_an_exception_if_the_probe_is_not_callable(): void
+    {
+        $constraint = new Eventually();
+
+        $this->expectException(IncorrectUsage::class);
+        $constraint->evaluate('foobar');
     }
 
     /**

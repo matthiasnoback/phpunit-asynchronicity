@@ -3,28 +3,4 @@ parameters:
     paths:
         - src
         - tests
-    ignoreErrors:
-        -
-            message: '#Method Asynchronicity\\PHPUnit\\Eventually::evaluate\(\) has parameter \$probe with no type specified\.#'
-            count: 1
-            path: 'src/Asynchronicity/PHPUnit/Eventually.php'
-
-        -
-            message: '#Method Asynchronicity\\PHPUnit\\Eventually::failureDescription\(\) has parameter \$other with no type specified\.#'
-            count: 1
-            path: 'src/Asynchronicity/PHPUnit/Eventually.php'
-
-        -
-            message: '#Dead catch - Asynchronicity\\Polling\\Interrupted is never thrown in the try block\.#'
-            count: 1
-            path: 'tests/Asynchronicity/PHPUnit/EventuallyTest.php'
-
-        -
-            message: '#Call to an undefined method Asynchronicity\\Polling\\Clock::expects\(\)\.#'
-            count: 4
-            path: 'tests/Asynchronicity/Polling/PollerTest.php'
-
-        -
-            message: '#Method Asynchronicity\\Polling\\TimeoutTest::clockReturnsMicrotimes\(\) has parameter \$microtimes with no value type specified in iterable type array\.#'
-            count: 1
-            path: 'tests/Asynchronicity/Polling/TimeoutTest.php'
+    ignoreErrors: []
