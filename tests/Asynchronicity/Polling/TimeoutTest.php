@@ -14,7 +14,7 @@ final class TimeoutTest extends TestCase
     private $timeout;
 
     /**
-     * @var MockObject & Clock
+     * @var MockObject&Clock
      */
     private $clock;
 
@@ -86,20 +86,14 @@ final class TimeoutTest extends TestCase
         $this->timeout->hasTimedOut();
     }
 
+    /**
+     * @param int[] $microtimes
+     */
     private function clockReturnsMicrotimes(array $microtimes): void
     {
-        static $at;
-        if ($at === null) {
-            $at = 0;
-        }
-
-        foreach ($microtimes as $microtime) {
-            $this->clock
-                ->expects($this->at($at))
-                ->method('getMicrotime')
-                ->will($this->returnValue($microtime));
-
-            $at++;
-        }
+        $this->clock
+            ->expects($this->exactly(count($microtimes)))
+            ->method('getMicrotime')
+            ->willReturnOnConsecutiveCalls(...$microtimes);
     }
 }

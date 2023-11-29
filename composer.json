@@ -3,7 +3,11 @@
     "description": "Library for asserting things that happen asynchronously with PHPUnit",
     "license": "MIT",
     "type": "library",
-    "keywords": ["PHPUnit", "asynchronicity", "assertion"],
+    "keywords": [
+        "PHPUnit",
+        "asynchronicity",
+        "assertion"
+    ],
     "authors": [
         {
             "name": "Matthias Noback",
@@ -22,10 +26,11 @@
         }
     },
     "require": {
-        "php": "^7.3 || ^8.0"
+        "php": "^8.1"
     },
     "require-dev": {
-        "phpstan/phpstan": "^0.9.2",
-        "phpunit/phpunit": "^9.0"
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^10.0",
+        "ext-pcntl": "*"
     }
 }
